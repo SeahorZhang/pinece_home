@@ -3,6 +3,12 @@ import { ref } from 'vue'
 import { type IconsType } from '~/types'
 import TheHeader from '~/components/TheHeader.vue'
 import HeroSection from '~/components/HeroSection.vue'
+import FeaturesSection from '~/components/FeaturesSection.vue'
+import HowItWorksSection from '~/components/HowItWorksSection.vue'
+import TestimonialsSection from '~/components/TestimonialsSection.vue'
+import FAQSection from '~/components/FAQSection.vue'
+import CTASection from '~/components/CTASection.vue'
+import TheFooter from '~/components/TheFooter.vue'
 
 // Icons components (需要替换为你选择的图标库)
 const icons = {
@@ -99,198 +105,18 @@ const navItems = ['首页', '功能特点', '使用方法', '用户评价', '常
     
     <main>
       <HeroSection :icons="icons" />
-      <!-- Features Section -->
-      <section id="features" class="py-20 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-          <h2 class="text-4xl font-bold mb-16 text-center text-gray-900 dark:text-white">
-            Powerful Features
-          </h2>
-          <div class="grid md:grid-cols-3 gap-12">
-            <div v-for="(feature, index) in features" 
-                 :key="index"
-                 class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 p-8 rounded-2xl shadow-xl transform hover:scale-105 transition duration-300">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 rounded-full flex items-center justify-center mb-6">
-                <i :class="icons[feature.icon]" class="w-8 h-8 text-white"></i>
-              </div>
-              <h3 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
-                {{ feature.title }}
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300">
-                {{ feature.description }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How It Works Section -->
-      <section id="how-it-works" class="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
-        <div class="container mx-auto px-4">
-          <h2 class="text-4xl font-bold mb-16 text-center text-gray-900 dark:text-white">
-            How It Works
-          </h2>
-          <div class="flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16">
-            <div v-for="(step, index) in steps" 
-                 :key="index"
-                 class="flex flex-col items-center text-center max-w-xs">
-              <div class="w-20 h-20 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 text-white rounded-full flex items-center justify-center text-3xl font-bold mb-6">
-                {{ index + 1 }}
-              </div>
-              <h3 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
-                {{ step.title }}
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300">
-                {{ step.description }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Testimonials Section -->
-      <section id="testimonials" class="py-20 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-          <h2 class="text-4xl font-bold mb-16 text-center text-gray-900 dark:text-white">
-            What Our Users Say
-          </h2>
-          <div class="grid md:grid-cols-2 gap-12">
-            <div v-for="(testimonial, index) in testimonials" 
-                 :key="index"
-                 class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 p-8 rounded-2xl shadow-xl">
-              <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg italic">
-                "{{ testimonial.quote }}"
-              </p>
-              <div class="flex items-center">
-                <img :src="testimonial.avatar" 
-                     :alt="testimonial.name"
-                     class="w-16 h-16 rounded-full mr-4 border-4 border-white dark:border-gray-800">
-                <div>
-                  <h4 class="font-semibold text-xl text-gray-900 dark:text-white">
-                    {{ testimonial.name }}
-                  </h4>
-                  <p class="text-gray-500 dark:text-gray-400">
-                    {{ testimonial.title }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ Section -->
-      <section id="faq" class="py-20 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-          <h2 class="text-4xl font-bold mb-16 text-center text-gray-900 dark:text-white">
-            Frequently Asked Questions
-          </h2>
-          <div class="max-w-3xl mx-auto space-y-4">
-            <div v-for="(faq, index) in faqs" 
-                 :key="index"
-                 class="border-b border-gray-200 dark:border-gray-700">
-              <button @click="toggleFaq(index)"
-                      class="flex justify-between items-center w-full py-5 text-left text-lg font-medium text-gray-900 dark:text-white focus:outline-none">
-                {{ faq.question }}
-                <i :class="[icons.ChevronDown, openFaqIndex === index ? 'transform rotate-180' : '']"
-                   class="w-5 h-5 text-gray-500 transition-transform duration-300"></i>
-              </button>
-              <div :class="['overflow-hidden transition-all duration-300 ease-in-out', 
-                          openFaqIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0']">
-                <p class="py-5 text-gray-600 dark:text-gray-300">
-                  {{ faq.answer }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section id="cta" class="py-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-        <div class="container mx-auto px-4 text-center">
-          <h2 class="text-4xl font-bold mb-8 text-white">
-            Ready to Supercharge Your Chrome?
-          </h2>
-          <p class="text-2xl mb-12 text-blue-100 max-w-3xl mx-auto">
-            Join thousands of satisfied users and experience the power of ChromeBoost today.
-          </p>
-          <button class="bg-white hover:bg-gray-100 text-indigo-600 font-bold py-4 px-10 rounded-full text-xl transition duration-300 transform hover:scale-105 flex items-center mx-auto">
-            <i :class="icons.Download" class="w-6 h-6 mr-3"></i>
-            Get ChromeBoost Now
-          </button>
-        </div>
-      </section>
+      <FeaturesSection :features="features" :icons="icons" />
+      <HowItWorksSection :steps="steps" />
+      <TestimonialsSection :testimonials="testimonials" />
+      <FAQSection 
+        :faqs="faqs" 
+        :icons="icons" 
+        :open-faq-index="openFaqIndex"
+        @toggle="toggleFaq"
+      />
+      <CTASection :icons="icons" />
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-      <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-4 gap-12">
-          <!-- Brand -->
-          <div class="space-y-4">
-            <div class="flex items-center space-x-2">
-              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
-                <i :class="icons.Zap" class="w-6 h-6 text-white"></i>
-              </div>
-              <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
-                ChromeBoost
-              </span>
-            </div>
-            <p class="text-gray-400">
-              Enhancing your Chrome experience, one click at a time.
-            </p>
-          </div>
-
-          <!-- Quick Links -->
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul class="space-y-2">
-              <li v-for="item in navItems" :key="item">
-                <a :href="`#${item.toLowerCase().replace(' ', '-')}`"
-                   class="text-gray-400 hover:text-white transition-colors duration-200">
-                  {{ item }}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Legal -->
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Legal</h4>
-            <ul class="space-y-2">
-              <li v-for="(item, index) in ['Privacy Policy', 'Terms of Service', 'Cookie Policy']"
-                  :key="index">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                  {{ item }}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Social Links -->
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
-            <div class="flex space-x-4">
-              <a v-for="(icon, name) in { Twitter: icons.Twitter, Facebook: icons.Facebook, Linkedin: icons.Linkedin, Instagram: icons.Instagram }"
-                 :key="name"
-                 href="#"
-                 class="text-gray-400 hover:text-white transition-colors duration-200">
-                <i :class="icon" class="w-6 h-6"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {{ new Date().getFullYear() }} ChromeBoost. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+    <TheFooter :icons="icons" :nav-items="navItems" />
   </div>
 </template>
-
-<style scoped>
-/* 可以添加任何需要的自定义样式 */
-</style>
-
